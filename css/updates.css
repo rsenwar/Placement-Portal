@@ -1,0 +1,17 @@
+.grey-text.text-darken-1 {
+   transition: 0.5s;
+}
+
+.grey-text.text-darken-1:hover {
+   color: #000000;
+   font-weight: bolder;
+}
+#latest_update {
+   padding-top:2.5%;
+   padding-bottom:2.5%;    
+}
+#header_img {
+   display: block;
+   margin: auto;
+   float: center;
+}

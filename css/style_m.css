@@ -1,0 +1,27 @@
+.ulxx {
+    list-style-type:circle;
+    padding-left: 40px;
+}
+
+.lixx {
+    list-style-type: circle;
+}
+
+/*Home Page */
+body {
+display: flex;
+min-height: 100vh;
+flex-direction: column;
+}
+
+main {
+flex: 1 0 auto;
+}
+
+.customblue{
+background-color:#003366 !important;
+}
+
+.customblue-text{
+color:#003366 !important;
+}
