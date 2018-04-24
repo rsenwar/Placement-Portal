@@ -1,17 +1,19 @@
+<?php include('../includes/admin_server.php') ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
   <title>IIIT Guwahati Placement Portal</title>
-  
   <link rel="shortcut icon" 
       type="image/x-icon" 
       href="./iiitg_logo.ico" >
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="../css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <style>
     body {
+	  background-image: url("building.jpg");
       display: flex;
       min-height: 100vh;
       flex-direction: column;
@@ -62,7 +64,7 @@
 <div class='nav-wrapper content' style='background-color:#ffffff;'>
        <div class='special_container white row customshadow' style='margin-bottom:0;'>
            <div id='logo' class='col s12'>
-            <a href='http://iiitg.ac.in/'><img class='reponsive-img' style='display: block;margin: 0 auto;width: 100%;max-width: 600px;height: auto;' src='header.png'></img></a>
+            <a href='http://iiitg.ac.in/'><img class='reponsive-img' style='display: block;margin: 0 auto;width: 100%;max-width: 600px;height: auto;' src='../images/header.png'></img></a>
            </div>
        </div>
   <main>
@@ -76,7 +78,7 @@
       <div class="container">
         <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
 
-          <form class="col s12" method="post">
+          <form class="col s12" method="post" action='login.php'>
             <div class='row'>
               <div class='col s12'>
               </div>
@@ -84,8 +86,8 @@
 
             <div class='row'>
               <div class='input-field col s12'>
-                <input class='validate' type='email' name='email' id='email' />
-                <label for='email'>Enter your user id</label>
+                <input class='validate' type='text' name='username'  />
+                <label for='emai'>Enter your user id</label>
               </div>
             </div>
 
@@ -97,18 +99,30 @@
               <label style='float: right;'>
 								<a class='blue-text' href='#!'><b>Forgot Password?</b></a>
 							</label>
+					
             </div>
 
             <br />
             <center>
               <div class='row'>
-                <button type='submit' name='btn_login' class='col s12 btn btn-large waves-effect blue darken-4'>Login</button>
+                <button type='submit' name='login_user1' class='col s12 btn btn-large waves-effect blue darken-4'>Login</button>
               </div>
             </center>
+
+		<center>
+              <div class='row red-text'>
+               <?php if (isset($_SESSION['msg']))
+				{
+    				echo $_SESSION['msg'];
+    			unset($_SESSION['msg']);
+				} ?>
+              </div>
+            </center>
+
           </form>
         </div>
       </div>
-      
+      <a href="register.php">Create account</a>
 	</div>
     </center>
   </main>
