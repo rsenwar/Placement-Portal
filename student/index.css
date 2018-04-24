@@ -1,0 +1,29 @@
+body {
+    background: #e2e1e0;
+    font-family: 'Dosis', sans-serif;
+}
+
+.flexbox {
+    display: flex;
+    flex-wrap: nowrap;
+    /* height: 100vh; */
+}
+
+.side {
+    width: 10%;
+}
+
+.main {
+    width: 80%;
+    background-color: #fff;
+    border-radius: 2px;
+    display: inline-block;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    margin: 1rem;
+    position: relative;
+}
+
+.main_heading {
+    text-align: center;
+    padding: 1rem;
+}

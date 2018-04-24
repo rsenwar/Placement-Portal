@@ -106,6 +106,15 @@
                 <button type='submit' name='login_user' class='col s12 btn btn-large waves-effect blue darken-4'>Login</button>
               </div>
             </center>
+			<center>
+              <div class='row red-text'>
+               <?php if (isset($_SESSION['msg']))
+				{
+    				echo $_SESSION['msg'];
+    			unset($_SESSION['msg']);
+				} ?>
+              </div>
+            </center>
           </form>
         </div>
       </div>

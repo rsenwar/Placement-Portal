@@ -6,7 +6,7 @@ if (!isset($_SESSION['stu_username'])) {
  header('location: login.php');
 }
 if(isset($_SESSION['stu_username'])){
-  if($_SESSION['stu_perm']=='0'){
+  if(!isset($_SESSION['stu_perm'])){
     header("location: ../student/info.php");}
   }
   ?>
@@ -47,6 +47,9 @@ if(isset($_SESSION['stu_username'])){
   </script>
   <script src="../js/live.js"></script>
   <style>
+	.btn{ 
+  background:rgba(0,0,0,0.5);
+}
   .tt {
     font-family: "Times New Roman", Times, serif;font-size: 20px;
   }	</style>
@@ -95,10 +98,10 @@ href="../images/iiitg_logo.ico" >
 
  <li class="no-padding">
   <ul class="collapsible collapsible-accordion">
-    <li class="bold"><a href="home.php" class="collapsible-header  waves-effect waves-teal active">HOME</a>
+    <li class="bold"><a href="home.php" class="collapsible-header  waves-effect waves-teal">HOME</a>
     </li>
 
-    <li class="bold"><a href="company.php" class="collapsible-header  waves-effect waves-teal">COMPANIES</a>
+    <li class="bold"><a href="company.php" class="collapsible-header  waves-effect waves-teal active">COMPANIES</a>
     </li>
 
     <li class="bold"><a href="upd_profile.php" class="collapsible-header  waves-effect waves-teal">UPDATE PROFILE</a>
@@ -106,7 +109,7 @@ href="../images/iiitg_logo.ico" >
 
     <li class="bold"><a href="faq.php" class="waves-effect waves-teal">FAQ</a></li>
 
-    <li class="bold"><a href="generate_cv.php" class="collapsible-header  waves-effect waves-teal">Generate RESUME</a>
+     <li class="bold"><a href="generate_cv.php" class="collapsible-header  waves-effect waves-teal">Generate RESUME</a>
     </li>
 
     <li class="bold"><a href="placement_team.php" class="collapsible-header  waves-effect waves-teal">Placement Team</a>
@@ -139,196 +142,66 @@ href="../images/iiitg_logo.ico" >
 <?php endif ?>
 
 <!-- logged in user information -->
-<?php  if (isset($_SESSION['stu_username'])) : ?>
+<?php $app = "APPLY";  if (isset($_SESSION['stu_username'])) : ?>
+<h3>Welcome <strong><?php echo $_SESSION['stu_username'];echo "!!" ?></strong></h3>
 
 
-
- <p> </p>
+<p> </p>
 <?php endif ?>
 </div>
-<div class="container"  style="margin-left:15px;margin-right:0px;">
+<main>
+<div class="container"  style="margin-left:-230px;margin-right:0px;">
   <!--  Outer row  -->
   <div class="row">
 
     <div class="col s12 m9 l10">
 
       <div id="home" class="section scrollspy">
-        <div class="card-panel grey lighten-5 z-depth-3" style="width:1000px;">
+        <div class="card-panel grey lighten-5 z-depth-1" style="width:1000px;">
         <div class="row">
 
          <div class = "col s6">
 
-          <?php 
-          $s_id = $_SESSION['stu_username'];
-          $sql = "SELECT * FROM student_info WHERE s_id='$s_id'";
 
+          <?php
+			$sql = "SELECT distinct name FROM company ";
+			$result = mysqli_query($db, $sql);
+			$s_id = $_SESSION['stu_username'];
+		?>
+               </div>  <table class="striped centered  tt">
+        <thead>
+          <tr>
+              <center>  </center> 
+          </tr>            
+            </table> 
 
-          ?>
-        </div>
-          <h5>PROFILE</h5>
-
-          <table class="striped centered  tt" style="">
-            <thead>
-              <tr>
-                <center>  <img class="l3 s3 m3 responsive-img"  src="../images/<?php echo $s_id ?>" style="margin-top:18px;max-height:200px;border-radius: 50%;"></img></center> 
-              </tr>
-            </thead>
-            <!--
-            <tbody>
-              <tr> <td><form action="upload.php" method="post" enctype="multipart/form-data">
-                Update Image: 
-                <input type="file" name="fileToUpload" id="fileToUpload"></td><td>
-                  <button class='col s9 btn waves-effect blue darken-4'><input type="submit" value="Upload Image" name="submit"></button>
-                </form></td></tr>
-                <tr>
-                  <td>Name</td>
-                  <td><?php 
-                  $result = mysqli_query($db, $sql);
-                  $row = mysqli_fetch_array($result);
-                  echo $row['f_name'];echo " ";echo $row['l_name'];
-                  ?></td>
-                </tr>
-                <tr>
-                  <td>EMail</td>
-                  <td><?php 
-                  echo $row['email'];echo " ";
-                  ?></td>
-                </tr>
-                <tr>
-                  <td>Department</td>
-                  <td><?php 
-                  echo $row['dept'];echo " ";
-                  ?></td>
-                </tr>
-                <tr>
-                  <td>CPI</td>
-                  <td><?php 
-                  echo $row['cpi'];echo " ";
-                  ?></td>
-                </tr>
-                <tr>
-                  <td>Address</td>
-                  <td><?php 
-                  echo $row['perm_add'];echo " ";
-                  ?></td>
-                </tr>
-                <tr>
-                  <td>Gender</td>
-                  <td><?php 
-                  echo $row['gender'];echo " ";
-                  ?></td>
-                </tr>
-                <tr>
-                  <td>Programme</td>
-                  <td><?php 
-                  echo $row['prog'];echo " ";
-                  ?></td>
-                </tr>
-                <tr>
-                  <td>Contact No.</td>
-                  <td><?php 
-                  echo $row['contact_no'];echo " ";
-                  ?></td>
-                </tr>
-              </tbody>-->
-            </table>  
+          <h5>List of Comapanies: </h5>
+ 
 <ul class="collection flow-text">
+	<?php $result = mysqli_query($db, $sql);
+    while($row = mysqli_fetch_array($result)) { ?>
     <li class="collection-item avatar">
       <i class="material-icons circle green">perm_identity</i>
-      <span class="title">Name: </span>
-      <p ><?php 
-                  $result = mysqli_query($db, $sql);
-                  $row = mysqli_fetch_array($result);
-                  echo $row['f_name'];echo " ";echo $row['l_name'];
-                  ?>
+      
+      <p><form method = "post" action = "comp_profile.php"><button type='submit' name="action" class='col s12 btn btn-large waves-effect blue darken-4' value="<?php   
+                  echo $row['name'];?>"><?php   
+                  echo $row['name'];?></button></form>
       </p>
     </li>
+	<?php } ?>
 
-    <li class="collection-item avatar">
-      <i class="material-icons circle">folder</i>
-      <span class="title">EMail: </span>
-      <p><?php 
-                  echo $row['email'];echo " ";
-                  ?>
-      </p>
-    </li>
-
-    <li class="collection-item avatar">
-      <i class="material-icons circle green">business</i>
-      <span class="title">Department: </span>
-      <p><?php 
-                  echo $row['dept'];echo " ";
-                  ?>
-      </p>
-    </li>
-
-    <li class="collection-item avatar">
-      <i class="material-icons circle red">grade</i>
-      <span class="title">CPI</span>
-      <p><?php 
-                  echo $row['cpi'];echo " ";
-                  ?>
-      </p>
-    </li>
-
-    <li class="collection-item avatar">
-<i class="material-icons circle red">my_location</i>
-      <span class="title">Perm. Address</span>
-      <p><?php 
-                  echo $row['perm_add'];echo " ";
-                  ?>
-      </p>
-    </li>
-    <li class="collection-item avatar">
-      <i class="material-icons circle blue">label</i>
-      <span class="title">Gender</span>
-      <p><?php 
-                  echo $row['gender'];echo " ";
-                  ?>
-      </p>
-    </li>
-    <li class="collection-item avatar">
-      <i class="material-icons circle red">polymer</i>
-      <span class="title">Program: </span>
-      <p><?php 
-                  echo $row['prog'];echo " ";
-                  ?>
-      </p>
-    </li>
-
-    <li class="collection-item avatar">
-      <i class="material-icons circle yellow">phone</i>
-      <span class="title">Contact No. </span>
-      <p><?php 
-                  echo $row['contact_no'];
-                  ?>
-      </p>
-    </li>
-	<li class="collection-item avatar">
-	<i class="material-icons circle yellow">perm_camera_mic</i>
-	<span class="title">Update Image: </span>
-	<p> 
-	<form action="upload.php" method="post" enctype="multipart/form-data">
-                <input type="file" name="fileToUpload" id="fileToUpload">
-                  <button class='col s3 btn waves-effect blue darken-4'><input type="submit" value="Upload Image" name="submit"></button>
-                </form></p>
-	</li>
-	<li class="collection-item avatar">
-	<i class="material-icons circle yellow">perm_camera_mic</i>
-	<span class="title">Update CV: </span>
-	<p> 
-	<form action="upload_cv.php" method="post" enctype="multipart/form-data">
-                <input type="file" name="fileToUpload" id="fileToUpload">
-                  <button class='col s3 btn waves-effect blue darken-4'><input type="submit" value="Upload CV" name="submit"></button>
-                </form></p>
-	</li>
   </ul>
           </div>
       </div>          
-        </div> <!-- End Container -->
-      </main>
+        </div>
 
-      <footer class="page-footer">
+
+
+
+<!-- End Container -->
+</main>
+
+<footer class="page-footer">
 
       <!--
       <div class="container">
