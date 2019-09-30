@@ -19,7 +19,7 @@
   <div class='nav-wrapper' style='background-color:;'>
        <div class='special_container white row customshadow' style='margin-bottom:0;'>
            <div id='logo' class='col s12'>
-            <a href='http://iiitg.ac.in/'><img class='reponsive-img' style='display: block;margin: 0 auto;width: 100%;max-width: 600px;height: auto;' src='header.png'></img></a>
+            <a href='http://iiitg.ac.in/'><img class='reponsive-img' style='display: block;margin: 0 auto;width: 100%;max-width: 600px;height: auto;' src='images/header.png'></img></a>
            </div>
        </div>
   <div class="section no-pad-bot" id="index-banner">
