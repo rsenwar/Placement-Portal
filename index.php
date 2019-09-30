@@ -25,7 +25,7 @@
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
       <br><br>
-      <h1 class="header center" style="color:#002C66;">Placement Portal</h1>
+      <h1 class="header center" style="color:#002C66;width: 50%;">Placement Portal</h1>
       <div class="row center">
         <h5 class="header col s12 light">IIIT Guwahati</h5>
       </div>
